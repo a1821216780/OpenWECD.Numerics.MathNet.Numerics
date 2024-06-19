@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <GenerateProgramFile>false</GenerateProgramFile>
+        <TargetFrameworks>net8.0;net48</TargetFrameworks>
+        <LangVersion>7.3</LangVersion>
+        <AssemblyName>MathNet.Numerics.Data.Tests</AssemblyName>
+        <RootNamespace>MathNet.Numerics.Data.Tests</RootNamespace>
+        <IsPackable>false</IsPackable>
+        <VersionPrefix>5.0.0</VersionPrefix>
+        <VersionSuffix>alpha02</VersionSuffix>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Numerics\Numerics.csproj" />
+        <ProjectReference Include="..\Data.Matlab\Data.Matlab.csproj" />
+        <ProjectReference Include="..\Data.Text\Data.Text.csproj" />
+        <ProjectReference Include="..\TestData\TestData.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+        <PackageReference Include="NUnitLite" Version="3.13.3" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>

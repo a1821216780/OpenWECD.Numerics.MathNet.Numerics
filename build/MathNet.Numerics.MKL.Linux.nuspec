@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>MathNet.Numerics.MKL.Linux</id>
+        <version>@build.number@</version>
+        <title>Math.NET Numerics - MKL Native Provider for Linux (x64 and x86)</title>
+        <authors>Christoph Ruegg, Marcus Cuda, Jurgen Van Gael</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <license type="file">license.txt</license>
+        <icon>icon.png</icon>
+        <projectUrl>https://numerics.mathdotnet.com/</projectUrl>
+        <repository type="git" url="https://github.com/mathnet/mathnet-numerics" />
+        <description>Intel MKL native libraries for Math.NET Numerics on Linux.</description>
+        <summary>Intel MKL native libraries for Math.NET Numerics on Linux.</summary>
+        <releaseNotes>@releaseNotes@</releaseNotes>
+        <copyright>Copyright Math.NET Project</copyright>
+        <tags>math numeric statistics probability integration interpolation linear algebra matrix fft native mkl</tags>
+        @dependencies@
+    </metadata>
+    <files>
+        <file src="..\..\out\MKL\Linux\x64\libiomp5.so" target="runtimes\linux-x64\native\libiomp5.so" />
+        <file src="..\..\out\MKL\Linux\x64\libMathNetNumericsMKL.so" target="runtimes\linux-x64\native\libMathNetNumericsMKL.so" />
+        <file src="..\..\out\MKL\Linux\x86\libiomp5.so" target="runtimes\linux-x86\native\libiomp5.so" />
+        <file src="..\..\out\MKL\Linux\x86\libMathNetNumericsMKL.so" target="runtimes\linux-x86\native\libMathNetNumericsMKL.so" />
+        <file src="..\..\build\NativeProvider.targets" target="build\net461\MathNet.Numerics.MKL.Linux.targets" />
+        <file src="..\..\build\NativeProvider.targets" target="build\net48\MathNet.Numerics.MKL.Linux.targets" />
+        <file src="..\..\build\NativeProvider.targets" target="buildTransitive\net461\MathNet.Numerics.MKL.Linux.targets" />
+        <file src="..\..\build\NativeProvider.targets" target="buildTransitive\net48\MathNet.Numerics.MKL.Linux.targets" />
+        <file src="..\..\build\_._" target="build\net5.0\_._" />
+        <file src="..\..\build\_._" target="build\netstandard2.0\_._" />
+        <file src="..\..\build\_._" target="buildTransitive\net5.0\_._" />
+        <file src="..\..\build\_._" target="buildTransitive\netstandard2.0\_._" />
+        <file src="..\..\build\icon.png" target="icon.png" />
+        <file src="license.txt" target="license.txt" />
+    </files>
+</package>

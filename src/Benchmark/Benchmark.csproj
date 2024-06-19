@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net8.0;net6.0;net48</TargetFrameworks>
+        <LangVersion>7.3</LangVersion>
+        <AssemblyName>Benchmark</AssemblyName>
+        <RootNamespace>Benchmark</RootNamespace>
+        <IsPackable>false</IsPackable>
+        <VersionPrefix>5.0.0</VersionPrefix>
+        <VersionSuffix>alpha02</VersionSuffix>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Remove="BenchmarkDotNet.Artifacts\**" />
+        <EmbeddedResource Remove="BenchmarkDotNet.Artifacts\**" />
+        <None Remove="BenchmarkDotNet.Artifacts\**" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Numerics\Numerics.csproj" />
+        <ProjectReference Include="..\Providers.MKL\Providers.MKL.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.13.11" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>
