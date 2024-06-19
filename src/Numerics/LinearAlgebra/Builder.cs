@@ -43,38 +43,6 @@ namespace MathNet.Numerics.LinearAlgebra.Double
 
         public override double One => 1d;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public override Matrix<double> Dense(DenseColumnMajorMatrixStorage<double> storage)
         {
             return new DenseMatrix(storage);
@@ -341,6 +309,76 @@ namespace MathNet.Numerics.LinearAlgebra.Complex32
     }
 }
 
+namespace MathNet.Numerics.LinearAlgebra.Int
+{
+    internal class MatrixBuilder : MatrixBuilder<int>
+    {
+        public override int Zero => 0;
+
+        public override int One => 1;
+
+        public override Matrix<int> Dense(DenseColumnMajorMatrixStorage<int> storage)
+        {
+            return new DenseMatrix(storage);
+        }
+
+        public override Matrix<int> Sparse(SparseCompressedRowMatrixStorage<int> storage)
+        {
+            throw new NotSupportedException();
+            //return new SparseMatrix(storage);
+        }
+
+        public override Matrix<int> Diagonal(DiagonalMatrixStorage<int> storage)
+        {
+            throw new NotSupportedException();
+            //return new DiagonalMatrix(storage);
+        }
+
+        public override Matrix<int> Random(int rows, int columns, IContinuousDistribution distribution)
+        {
+            return Dense(rows, columns, Generate.Random(rows * columns, distribution).Select(x => (int)x).ToArray());
+        }
+
+        public override IIterationStopCriterion<int>[] IterativeSolverStopCriteria(int maxIterations = 1000)
+        {
+            return new IIterationStopCriterion<int>[]
+            {
+                new FailureStopCriterion<int>(),
+                new DivergenceStopCriterion<int>(),
+                new IterationCountStopCriterion<int>(maxIterations),
+                new ResidualStopCriterion<int>(1e-12)
+            };
+        }
+
+        internal override int Add(int x, int y)
+        {
+            return x + y;
+        }
+    }
+
+    internal class VectorBuilder : VectorBuilder<int>
+    {
+        public override int Zero => 0;
+
+        public override int One => 1;
+
+        public override Vector<int> Dense(DenseVectorStorage<int> storage)
+        {
+            return new DenseVector(storage);
+        }
+
+        public override Vector<int> Sparse(SparseVectorStorage<int> storage)
+        {
+            throw new NotSupportedException();
+            //return new SparseVector(storage);
+        }
+
+        public override Vector<int> Random(int length, IContinuousDistribution distribution)
+        {
+            return Dense(Generate.Random(length, distribution).Select(x => (int)x).ToArray());
+        }
+    }
+}
 namespace MathNet.Numerics.LinearAlgebra
 {
     /// <summary>
@@ -1722,7 +1760,12 @@ namespace MathNet.Numerics.LinearAlgebra
                     (MatrixBuilder<T>)(object)new Single.MatrixBuilder(),
                     (VectorBuilder<T>)(object)new Single.VectorBuilder());
             }
-
+            if (typeof(T) == typeof(int))
+            {
+                return new Tuple<MatrixBuilder<T>, VectorBuilder<T>>(
+                    (MatrixBuilder<T>)(object)new Int.MatrixBuilder(),
+                    (VectorBuilder<T>)(object)new Int.VectorBuilder());
+            }
             throw new NotSupportedException(FormattableString.Invariant($"Matrices and vectors of type '{typeof(T).Name}' are not supported. Only Double, Single, Complex or Complex32 are supported at this point."));
         }
 
