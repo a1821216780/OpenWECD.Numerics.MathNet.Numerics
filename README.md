@@ -1,7 +1,7 @@
-Math.NET Numerics
-=================
+OpenWECD.Numerics Math.NET Numerics
+===================================
 
-Math.NET Numerics is an opensource **numerical library for .NET and Mono**.
+Math.NET Numerics is an opensource **numerical library for .NET and Mono**.used for OPENWECD
 
 Math.NET Numerics is the numerical foundation of the Math.NET initiative, aiming to provide methods and algorithms for numerical computations in science, engineering and every day use. Covered topics include special functions, linear algebra, probability models, random numbers, statistics, interpolation, integration, regression, curve fitting, integral transforms (FFT) and more.
 
@@ -11,19 +11,18 @@ Math.NET Numerics is covered under the terms of the [MIT license](LICENSE.md). Y
 
 * [**Project Website**](https://numerics.mathdotnet.com)
 * [Source Code](https://github.com/mathnet/mathnet-numerics)
-* [NuGet & Binaries](https://numerics.mathdotnet.com/Packages.html) | [Release Notes](https://numerics.mathdotnet.com/ReleaseNotes.html)
+* [NuGet &amp; Binaries](https://numerics.mathdotnet.com/Packages.html) | [Release Notes](https://numerics.mathdotnet.com/ReleaseNotes.html)
 * [Documentation](https://numerics.mathdotnet.com) | [API Reference](https://numerics.mathdotnet.com/api/)
-* [Issues & Bugs](https://github.com/mathnet/mathnet-numerics/issues) | [Ideas](https://feedback.mathdotnet.com/forums/2060-math-net-numerics)
+* [Issues &amp; Bugs](https://github.com/mathnet/mathnet-numerics/issues) | [Ideas](https://feedback.mathdotnet.com/forums/2060-math-net-numerics)
 * [Discussions](https://github.com/mathnet/mathnet-numerics/discussions) | [Stack Overflow](https://stackoverflow.com/questions/tagged/mathdotnet) | [Twitter](https://twitter.com/MathDotNet)
 * [Wikipedia](https://en.wikipedia.org/wiki/Math.NET_Numerics) | [OpenHUB](https://www.openhub.net/p/mathnet-numerics)
 
 ### Current Version
 
-![Math.NET Numerics Version](https://buildstats.info/nuget/MathNet.Numerics) Math.NET Numerics  
-![MKL Native Provider Version](https://buildstats.info/nuget/MathNet.Numerics.MKL.Win) MKL Native Provider  
-![OpenBLAS Native Provider Version](https://buildstats.info/nuget/MathNet.Numerics.OpenBLAS.Win) OpenBLAS Native Provider  
-![Data Extensions Version](https://buildstats.info/nuget/MathNet.Numerics.Data.Text) Data Extensions
-
+![Math.NET Numerics Version](https://buildstats.info/nuget/MathNet.Numerics) Math.NET Numerics
+![MKL Native Provider Version](https://buildstats.info/nuget/MathNet.Numerics.MKL.Win) MKL Native Provider
+![OpenBLAS Native Provider Version](https://buildstats.info/nuget/MathNet.Numerics.OpenBLAS.Win) OpenBLAS Native Provider
+![Data Extensions Version](http://www.openwecd.fun/update/ohast2.png) OpenWECD.QHAST2
 Installation Instructions
 -------------------------
 
@@ -79,5 +78,5 @@ MsBuild/XBuild:
     ./restore.sh (or restore.cmd)
     msbuild MathNet.Numerics.sln
 
-See [Build & Tools](https://numerics.mathdotnet.com/Build.html) for full details
+See [Build &amp; Tools](https://numerics.mathdotnet.com/Build.html) for full details
 on how to build, generate documentation or even create a full release.
