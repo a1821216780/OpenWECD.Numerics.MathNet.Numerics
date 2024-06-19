@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Library</OutputType>
-        <TargetFrameworks>net8.0;net6.0;net48;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net9.0;net8.0;net6.0;netstandard2.0</TargetFrameworks>
         <LangVersion>7.3</LangVersion>
         <AssemblyName>MathNet.Numerics.Providers.MKL</AssemblyName>
         <RootNamespace>MathNet.Numerics.Providers.MKL</RootNamespace>
@@ -23,7 +23,7 @@ many contributions, proper release notes with attributions will follow. thank yo
         <ProjectReference Include="..\Numerics\Numerics.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0-preview.24225.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
