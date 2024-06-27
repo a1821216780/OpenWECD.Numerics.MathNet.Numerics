@@ -149,7 +149,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
         /// This new matrix will be independent from the enumerable.
         /// A new memory block will be allocated for storing the matrix.
         /// </summary>
-        public static DenseMatrix OfIndexed(int rows, int columns, IEnumerable<(int, int,int)> enumerable)
+        public static DenseMatrix OfIndexed(int rows, int columns, IEnumerable<(int, int, int)> enumerable)
         {
             return new DenseMatrix(DenseColumnMajorMatrixStorage<int>.OfIndexedEnumerable(rows, columns, enumerable));
         }
@@ -564,7 +564,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
             //}
             //else
             //{
-                base.DoMultiply(scalar, result);
+            base.DoMultiply(scalar, result);
             //}
         }
 
@@ -589,7 +589,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
             //}
             //else
             //{
-                base.DoMultiply(rightSide, result);
+            base.DoMultiply(rightSide, result);
             //}
         }
 
@@ -710,7 +710,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
             //}
             //else
             //{
-                base.DoTransposeThisAndMultiply(rightSide, result);
+            base.DoTransposeThisAndMultiply(rightSide, result);
             //}
         }
 
@@ -777,7 +777,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
             //}
             //else
             //{
-                base.DoDivide(divisor, result);
+            base.DoDivide(divisor, result);
             //}
         }
 
@@ -795,7 +795,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
             //}
             //else
             //{
-                base.DoPointwiseMultiply(other, result);
+            base.DoPointwiseMultiply(other, result);
             //}
         }
 
@@ -813,7 +813,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
             //}
             //else
             //{
-                base.DoPointwiseDivide(divisor, result);
+            base.DoPointwiseDivide(divisor, result);
             //}
         }
 
@@ -831,7 +831,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
             //}
             //else
             //{
-                base.DoPointwisePower(exponent, result);
+            base.DoPointwisePower(exponent, result);
             //}
         }
 
@@ -1192,7 +1192,7 @@ namespace MathNet.Numerics.LinearAlgebra.Int
                 var index = j * RowCount;
                 for (var i = j + 1; i < RowCount; i++)
                 {
-                    if (_values[(i*ColumnCount) + j] != _values[index + i])
+                    if (_values[(i * ColumnCount) + j] != _values[index + i])
                     {
                         return false;
                     }

@@ -116,7 +116,15 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("colRep should be \":\" constantly.");
                 }
-                return Row(iRow);
+                if(iRow!=-1)
+                {
+                    return Row(iRow);
+                }
+                else
+                {
+                    return Row(RowCount-1);
+                }
+                
             }
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
@@ -126,7 +134,14 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("colRep should be \":\" constantly.");
                 }
-                SetRow(iRow, value);
+                if (iRow != -1)
+                {
+                    SetRow(iRow, value);
+                }
+                else
+                {
+                    SetRow(RowCount - 1, value); 
+                }
             }
 
         }
@@ -148,7 +163,14 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("rowRep should be \":\" constantly.");
                 }
-                return Column(iCol);
+                if (iCol != -1)
+                {
+                    return Column(iCol);
+                }
+                else
+                {
+                    return Column(ColumnCount - 1);
+                }
             }
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
@@ -158,7 +180,15 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("rowRep should be \":\" constantly.");
                 }
-                SetColumn(iCol, value);
+                if (iCol != -1)
+                {
+                    SetColumn(iCol, value);
+                }
+                else
+                {
+                    SetColumn(ColumnCount - 1, value);
+                }
+
             }
         }
 
@@ -487,6 +517,37 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
 
+        public Matrix<T> this[char rowRep,char colRep]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            get
+            {
+                if (rowRep != ':')
+                {
+                    throw new Exception("rowRep should be \":\" constantly.");
+                }
+                if (colRep != ':')
+                {
+                    throw new Exception("colRep should be \":\" constantly.");
+                }
+                return Clone();
+            }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            set
+            {
+                if (rowRep != ':')
+                {
+                    throw new Exception("rowRep should be \":\" constantly.");
+                }
+                if (colRep != ':')
+                {
+                    throw new Exception("colRep should be \":\" constantly.");
+                }
+                SetSubMatrix(0, RowCount, 0, ColumnCount, value);
+            }
+        }
 
 
 

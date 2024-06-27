@@ -32,6 +32,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
@@ -122,9 +123,54 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
 
+        public Vector<T> this[char str]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            get
+            {
+                if (str != ':')
+                {
+                    throw new Exception("rowRep should be \":\" constantly.");
+                }
+                return this.Clone();
+            }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            set
+            {
+                SetSubVector(0, this.Count, value);
+            }
+        }
+
+        public Vector<T> this[IEnumerable<int> rowRep]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            get
+            {
+                int roenum = rowRep.Count();
+                Vector<T> res= Vector<T>.Build.Dense( roenum);
+                for (int i = 0; i < roenum; i++)
+                {
+                    res[i] = this[rowRep.ElementAt(i)];
+                }
+                return res;
+
+            }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            set
+            {
+                int roenum = rowRep.Count();
+                for (int i = 0; i < roenum; i++)
+                {
+                    this[rowRep.ElementAt(i)] = value[i];
+                }
 
 
-
+            }
+        }
 
 
 
