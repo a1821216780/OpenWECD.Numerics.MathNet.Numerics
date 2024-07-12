@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Library</OutputType>
-        <TargetFrameworks>net9.0;net8.0;net6.0;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net9.0;net8.0;</TargetFrameworks>
         <LangVersion>7.3</LangVersion>
         <AssemblyName>MathNet.Numerics</AssemblyName>
         <RootNamespace>MathNet.Numerics</RootNamespace>
@@ -20,12 +20,13 @@ many contributions, proper release notes with attributions will follow. thank yo
         <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
         <NoWarn>1701;1702;1705;1591;1573</NoWarn>
         <ApplicationIcon>HASTv7.ico</ApplicationIcon>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
     <!--<ItemGroup>
       <Content Include="HASTv7.ico" />
     </ItemGroup>-->
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0-preview.24225.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0-preview.24318.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

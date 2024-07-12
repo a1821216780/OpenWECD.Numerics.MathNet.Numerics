@@ -92,7 +92,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public virtual string ToTypeString()
         {
-            return FormattableString.Invariant($"{GetType().Name} {RowCount}x{ColumnCount}-{typeof(T).Name}");
+            return "OpenWECD.Numerics "+FormattableString.Invariant($"{GetType().Name} {RowCount}x{ColumnCount}-{typeof(T).Name}");
         }
 
         /// <summary>

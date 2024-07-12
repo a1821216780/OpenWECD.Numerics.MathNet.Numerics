@@ -143,17 +143,47 @@ namespace MathNet.Numerics.LinearAlgebra
             }
         }
 
-        public Vector<T> this[IEnumerable<int> rowRep]
+        //public Vector<T> this[IEnumerable<int> rowRep]
+        //{
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    get
+        //    {
+        //        int roenum = rowRep.Count();
+        //        Vector<T> res= Vector<T>.Build.Dense( roenum);
+        //        for (int i = 0; i < roenum; i++)
+        //        {
+        //            res[i] = this[rowRep.ElementAt(i)];
+        //        }
+        //        return res;
+
+        //    }
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    set
+        //    {
+        //        int roenum = rowRep.Count();
+        //        for (int i = 0; i < roenum; i++)
+        //        {
+        //            this[rowRep.ElementAt(i)] = value[i];
+        //        }
+
+
+        //    }
+        //}
+
+
+        public Vector<T> this[Span<int> rowRep]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
             get
             {
-                int roenum = rowRep.Count();
-                Vector<T> res= Vector<T>.Build.Dense( roenum);
+                int roenum = rowRep.Length;
+                Vector<T> res = Vector<T>.Build.Dense(roenum);
                 for (int i = 0; i < roenum; i++)
                 {
-                    res[i] = this[rowRep.ElementAt(i)];
+                    res[i] = this[rowRep[i]];
                 }
                 return res;
 
@@ -162,17 +192,15 @@ namespace MathNet.Numerics.LinearAlgebra
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
             set
             {
-                int roenum = rowRep.Count();
+                int roenum = rowRep.Length;
                 for (int i = 0; i < roenum; i++)
                 {
-                    this[rowRep.ElementAt(i)] = value[i];
+                    this[rowRep[i]] = value[i];
                 }
 
 
             }
         }
-
-
 
 
 

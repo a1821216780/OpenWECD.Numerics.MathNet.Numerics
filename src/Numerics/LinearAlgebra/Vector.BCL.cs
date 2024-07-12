@@ -234,7 +234,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public virtual string ToTypeString()
         {
-            return FormattableString.Invariant($"{GetType().Name} {Count}-{typeof(T).Name}");
+            return "OpenWECD.Numerics " + FormattableString.Invariant($"{GetType().Name} {Count}-{typeof(T).Name}");
         }
 
         public string[,] ToVectorStringArray(int maxPerColumn, int maxCharactersWidth, int padding, string ellipsis, Func<T, string> formatValue)

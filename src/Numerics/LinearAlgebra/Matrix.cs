@@ -116,15 +116,15 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("colRep should be \":\" constantly.");
                 }
-                if(iRow!=-1)
+                if (iRow != -1)
                 {
                     return Row(iRow);
                 }
                 else
                 {
-                    return Row(RowCount-1);
+                    return Row(RowCount - 1);
                 }
-                
+
             }
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
@@ -140,7 +140,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 else
                 {
-                    SetRow(RowCount - 1, value); 
+                    SetRow(RowCount - 1, value);
                 }
             }
 
@@ -191,6 +191,201 @@ namespace MathNet.Numerics.LinearAlgebra
 
             }
         }
+
+        ///// <summary>
+        ///// 获取指定某列上，指定行数的向量
+        ///// </summary>
+        ///// <param name="rowRep"></param>
+        ///// <param name="col"></param>
+        ///// <returns></returns>
+        //public Vector<T> this[IEnumerable<int> rowRep, int col]
+        //{
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    get
+        //    {
+        //        if (col == -1)
+        //        {
+        //            col = ColumnCount - 1;
+        //        }
+
+        //        var result = Vector<T>.Build.Dense(rowRep.Count());
+        //        int i = 0;
+        //        foreach (int iRow in rowRep)
+        //        {
+        //            result[i] = At(iRow, col);
+        //            i++;
+        //        }
+        //        return result;
+
+
+        //    }
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    set
+        //    {
+        //        if (col == -1)
+        //        {
+        //            col = ColumnCount - 1;
+        //        }
+        //        if (rowRep.Count() != value.Count)
+        //        {
+        //            throw new Exception("rowRep count should be equal to the value count.");
+        //        }
+        //        int i = 0;
+        //        foreach (int iRow in rowRep)
+        //        {
+        //            At(iRow, col, value[i]);
+        //            i++;
+        //        }
+        //    }
+        //}
+
+        /// <summary>
+        /// 获取指定某列上，指定行数的向量
+        /// </summary>
+        /// <param name="rowRep"></param>
+        /// <param name="col"></param>
+        /// <returns></returns>
+        public Vector<T> this[System.Span<int> rowRep, int col]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            get
+            {
+                if (col == -1)
+                {
+                    col = ColumnCount - 1;
+                }
+
+                var result = Vector<T>.Build.Dense(rowRep.Length);
+                int i = 0;
+                foreach (int iRow in rowRep)
+                {
+                    result[i] = At(iRow, col);
+                    i++;
+                }
+                return result;
+
+
+            }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            set
+            {
+                if (col == -1)
+                {
+                    col = ColumnCount - 1;
+                }
+                if (rowRep.Length != value.Count)
+                {
+                    throw new Exception("rowRep count should be equal to the value count.");
+                }
+                int i = 0;
+                foreach (int iRow in rowRep)
+                {
+                    At(iRow, col, value[i]);
+                    i++;
+                }
+            }
+        }
+
+        ///// <summary>
+        ///// 获取指定某行上，指定列数的向量
+        ///// </summary>
+        ///// <param name="row"></param>
+        ///// <param name="colRep"></param>
+        ///// <returns></returns>
+        ///// <exception cref="Exception"></exception>
+        //public Vector<T> this[int row, IEnumerable<int> colRep]
+        //{
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    get
+        //    {
+        //        if (row == -1)
+        //        {
+        //            row = RowCount - 1;
+        //        }
+
+        //        var result = Vector<T>.Build.Dense(colRep.Count());
+        //        int i = 0;
+        //        foreach (int iCol in colRep)
+        //        {
+        //            result[i] = At(row, iCol);
+        //            i++;
+        //        }
+        //        return result;
+        //    }
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    set
+        //    {
+        //        if (row == -1)
+        //        {
+        //            row = RowCount - 1;
+        //        }
+        //        if (colRep.Count() != value.Count)
+        //        {
+        //            throw new Exception("colRep count should be equal to the value count.");
+        //        }
+        //        int i = 0;
+        //        foreach (int iCol in colRep)
+        //        {
+        //            At(row, iCol, value[i]);
+        //            i++;
+        //        }
+        //    }
+        //}
+
+        /// <summary>
+        /// 获取指定某行上，指定列数的向量
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="colRep"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public Vector<T> this[int row, System.Span<int> colRep]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            get
+            {
+                if (row == -1)
+                {
+                    row = RowCount - 1;
+                }
+
+                var result = Vector<T>.Build.Dense(colRep.Length);
+                int i = 0;
+                foreach (int iCol in colRep)
+                {
+                    result[i] = At(row, iCol);
+                    i++;
+                }
+                return result;
+            }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+            set
+            {
+                if (row == -1)
+                {
+                    row = RowCount - 1;
+                }
+                if (colRep.Length != value.Count)
+                {
+                    throw new Exception("colRep count should be equal to the value count.");
+                }
+                int i = 0;
+                foreach (int iCol in colRep)
+                {
+                    At(row, iCol, value[i]);
+                    i++;
+                }
+            }
+        }
+
 
         /// <summary>
         /// 获取或设置几列组成一个矩阵a[:,(1,5)]获取矩阵的[1,2,3,4]列
@@ -368,6 +563,55 @@ namespace MathNet.Numerics.LinearAlgebra
 
             }
         }
+        ///// <summary>
+        ///// 获取矩阵的某几行[(1,3,5,10),':']
+        ///// </summary>
+        ///// <param name="rowRep"></param>
+        ///// <param name="colRep"></param>
+        ///// <returns></returns>
+        ///// <exception cref="Exception"></exception>
+        //public Matrix<T> this[IEnumerable<int> rowRep, char colRep]
+        //{
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    get
+        //    {
+        //        if (colRep != ':')
+        //        {
+        //            throw new Exception("colRep should be \":\" constantly.");
+        //        }
+        //        int row = rowRep.Count();
+        //        Matrix<T> result = Matrix<T>.Build.Dense(row, this.ColumnCount);
+        //        int i = 0;
+        //        foreach (int iRow in rowRep)
+        //        {
+        //            result.SetRow(i, this.Row(iRow));
+        //            i++;
+        //        }
+        //        return result;
+        //    }
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    set
+        //    {
+        //        if (colRep != ':')
+        //        {
+        //            throw new Exception("colRep should be \":\" constantly.");
+        //        }
+        //        int row = rowRep.Count();
+        //        if (row != value.RowCount)
+        //        {
+        //            throw new Exception("row count should be equal to the rowRep count.");
+        //        }
+        //        int i = 0;
+        //        foreach (int iRow in rowRep)
+        //        {
+        //            SetRow(iRow, value.Row(i));
+        //            i++;
+        //        }
+        //    }
+        //}
+
         /// <summary>
         /// 获取矩阵的某几行[(1,3,5,10),':']
         /// </summary>
@@ -375,7 +619,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="colRep"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public Matrix<T> this[IEnumerable<int> rowRep, char colRep]
+        public Matrix<T> this[Span<int> rowRep, char colRep]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
@@ -385,7 +629,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("colRep should be \":\" constantly.");
                 }
-                int row = rowRep.Count();
+                int row = rowRep.Length;
                 Matrix<T> result = Matrix<T>.Build.Dense(row, this.ColumnCount);
                 int i = 0;
                 foreach (int iRow in rowRep)
@@ -403,7 +647,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("colRep should be \":\" constantly.");
                 }
-                int row = rowRep.Count();
+                int row = rowRep.Length;
                 if (row != value.RowCount)
                 {
                     throw new Exception("row count should be equal to the rowRep count.");
@@ -416,6 +660,55 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
         }
+        ///// <summary>
+        ///// 获取矩阵的某几列[':'，(1,3,5,10）]
+        ///// </summary>
+        ///// <param name="rowRep"></param>
+        ///// <param name="colRep"></param>
+        ///// <returns></returns>
+        ///// <exception cref="Exception"></exception>
+        //public Matrix<T> this[char rowRep, IEnumerable<int> colRep]
+        //{
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    get
+        //    {
+        //        if (rowRep != ':')
+        //        {
+        //            throw new Exception("rowRep should be \":\" constantly.");
+        //        }
+        //        int col = colRep.Count();
+        //        Matrix<T> result = Matrix<T>.Build.Dense(this.RowCount, col);
+        //        int i = 0;
+        //        foreach (int iCol in colRep)
+        //        {
+        //            result.SetColumn(i, this.Column(iCol));
+        //            i++;
+        //        }
+        //        return result;
+        //    }
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    set
+        //    {
+        //        if (rowRep != ':')
+        //        {
+        //            throw new Exception("rowRep should be \":\" constantly.");
+        //        }
+        //        int col = colRep.Count();
+        //        if (col != value.ColumnCount)
+        //        {
+        //            throw new Exception("col count should be equal to the colRep count.");
+        //        }
+
+        //        int i = 0;
+        //        foreach (int iCol in colRep)
+        //        {
+        //            SetColumn(iCol, value.Column(i));
+        //            i++;
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 获取矩阵的某几列[':'，(1,3,5,10）]
@@ -424,7 +717,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="colRep"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public Matrix<T> this[char rowRep, IEnumerable<int> colRep]
+        public Matrix<T> this[char rowRep, Span<int> colRep]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
@@ -434,7 +727,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("rowRep should be \":\" constantly.");
                 }
-                int col = colRep.Count();
+                int col = colRep.Length;
                 Matrix<T> result = Matrix<T>.Build.Dense(this.RowCount, col);
                 int i = 0;
                 foreach (int iCol in colRep)
@@ -452,7 +745,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     throw new Exception("rowRep should be \":\" constantly.");
                 }
-                int col = colRep.Count();
+                int col = colRep.Length;
                 if (col != value.ColumnCount)
                 {
                     throw new Exception("col count should be equal to the colRep count.");
@@ -468,15 +761,61 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
 
+        //public Matrix<T> this[IEnumerable<int> rowRep, IEnumerable<int> colRep]
+        //{
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    get
+        //    {
+        //        int roenum = rowRep.Count();
+        //        int colnum = colRep.Count();
+        //        Matrix<T> result = Matrix<T>.Build.Dense(roenum, colnum);
+        //        int i = 0;
+        //        foreach (int iRow in rowRep)
+        //        {
+        //            int j = 0;
+        //            foreach (int iCol in colRep)
+        //            {
+        //                result.At(i, j, this.At(iRow, iCol));
+        //                j++;
+        //            }
+        //            i++;
+        //        }
+        //        return result;
+        //    }
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        //    set
+        //    {
+        //        int roenum = rowRep.Count();
+        //        int colnum = colRep.Count();
+        //        if (roenum != value.RowCount || colnum != value.ColumnCount)
+        //        {
+        //            throw new Exception("rowRep count should be equal to the row count of value, and colRep count should be equal to the col count of value.");
+        //        }
+        //        int i = 0;
+        //        foreach (int iRow in rowRep)
+        //        {
+        //            int j = 0;
+        //            foreach (int iCol in colRep)
+        //            {
+        //                At(iRow, iCol, value.At(i, j));
+        //                j++;
+        //            }
+        //            i++;
+        //        }
 
-        public Matrix<T> this[IEnumerable<int> rowRep, IEnumerable<int> colRep]
+        //    }
+        //}
+
+        public Matrix<T> this[Span<int> rowRep, Span<int> colRep]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
             get
             {
-                int roenum = rowRep.Count();
-                int colnum = colRep.Count();
+                int roenum = rowRep.Length;
+                int colnum = colRep.Length;
                 Matrix<T> result = Matrix<T>.Build.Dense(roenum, colnum);
                 int i = 0;
                 foreach (int iRow in rowRep)
@@ -495,8 +834,8 @@ namespace MathNet.Numerics.LinearAlgebra
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
             set
             {
-                int roenum = rowRep.Count();
-                int colnum = colRep.Count();
+                int roenum = rowRep.Length;
+                int colnum = colRep.Length;
                 if (roenum != value.RowCount || colnum != value.ColumnCount)
                 {
                     throw new Exception("rowRep count should be equal to the row count of value, and colRep count should be equal to the col count of value.");
@@ -517,7 +856,7 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
 
-        public Matrix<T> this[char rowRep,char colRep]
+        public Matrix<T> this[char rowRep, char colRep]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
