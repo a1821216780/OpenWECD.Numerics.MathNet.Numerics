@@ -20,9 +20,13 @@ Math.NET Numerics is covered under the terms of the [MIT license](LICENSE.md). Y
 ### Current Version
 
 ![Math.NET Numerics Version](https://buildstats.info/nuget/MathNet.Numerics) Math.NET Numerics
+
 ![MKL Native Provider Version](https://buildstats.info/nuget/MathNet.Numerics.MKL.Win) MKL Native Provider
+
 ![OpenBLAS Native Provider Version](https://buildstats.info/nuget/MathNet.Numerics.OpenBLAS.Win) OpenBLAS Native Provider
+
 ![Data Extensions Version](http://www.openwecd.fun/update/ohast2.png) OpenWECD.QHAST2
+
 Installation Instructions
 -------------------------
 
