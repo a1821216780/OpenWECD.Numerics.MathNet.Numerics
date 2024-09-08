@@ -408,6 +408,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     colSlice.Item2 = ColumnCount;
                 }
+
                 return SubMatrix(0, RowCount, colSlice.Item1, colSlice.Item2 - colSlice.Item1);
 
 

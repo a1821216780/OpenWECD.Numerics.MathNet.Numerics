@@ -37,6 +37,6 @@ many contributions, proper release notes with attributions will follow. thank yo
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="OneOf" Version="3.0.263" />
+        <PackageReference Include="OneOf" Version="3.0.271" />
     </ItemGroup>
 </Project>
